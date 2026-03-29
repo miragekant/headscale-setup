@@ -1,0 +1,4 @@
+# SWAG certbot DuckDNS credentials
+# Replace with your real token after the first SWAG start.
+
+dns_duckdns_token = YOUR_DUCKDNS_TOKEN

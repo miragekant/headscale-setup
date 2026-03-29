@@ -1,0 +1,38 @@
+---
+services:
+  swag:
+    image: lscr.io/linuxserver/swag
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - URL=${BASE_DOMAIN}
+      - SUBDOMAINS=${SWAG_SUBDOMAINS}
+      - VALIDATION=${SWAG_VALIDATION}
+      - DNSPLUGIN=${SWAG_DNSPLUGIN}
+    volumes:
+      - ./swag/config:/config
+    ports:
+      - 443:443
+      - 80:80
+    restart: unless-stopped
+
+  headscale:
+    image: docker.io/headscale/headscale:latest
+    container_name: headscale
+    read_only: true
+    tmpfs:
+      - /var/run/headscale
+    ports:
+      - "127.0.0.1:8080:8080"
+      - "127.0.0.1:9090:9090"
+    volumes:
+      - ./headscale/config:/etc/headscale:ro
+      - ./headscale/lib:/var/lib/headscale
+    command: serve
+    healthcheck:
+      test: ["CMD", "headscale", "health"]
+    restart: unless-stopped

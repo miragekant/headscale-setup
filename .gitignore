@@ -1,0 +1,27 @@
+.env
+docker/.env
+
+# OS/editor
+.DS_Store
+
+# Docker runtime state
+docker/headscale/config/config.yaml
+docker/headscale/lib/*
+!docker/headscale/lib/.gitkeep
+
+docker/swag/config/dns-conf/*.ini
+!docker/swag/config/dns-conf/*.sample
+docker/swag/config/dns-conf/*.json
+docker/swag/config/.donoteditthisfile.conf
+docker/swag/config/.migrations
+docker/swag/config/etc/
+docker/swag/config/fail2ban/
+docker/swag/config/keys/
+docker/swag/config/log/
+docker/swag/config/nginx/*.conf
+!docker/swag/config/nginx/proxy-confs/
+docker/swag/config/nginx/proxy-confs/*.conf
+!docker/swag/config/nginx/proxy-confs/*.sample
+docker/swag/config/nginx/site-confs/
+docker/swag/config/php/
+docker/swag/config/www/
